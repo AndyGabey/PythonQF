@@ -74,7 +74,7 @@ def mostcalcs(qfConfig, qfParams):
     #WattHour[domains, energy parts, half-hour timesteps]
     WattDay = np.empty((len(Area),19,d))
     WattHourDays=OrderedDict()
-    WattArea=np.empty((len(Area), 19, d*hours*2))
+    WattHH=np.empty((len(Area), 19, d*hours*2))
 
     # Cycle around time and spatial bins, weighting fluxes by seasonal and spatial energy use
     for dd in range(0, d):
@@ -130,7 +130,7 @@ def mostcalcs(qfConfig, qfParams):
                 WattHour[A,18,hh]=WattHour[A,8,hh]+WattHour[A,16,hh]+WattHour[A,17,hh]
 
             #IF HALF-HOURLY IS SELECTED>>> (for when GUI is sorted out)
-                WattArea[A,:,48*dd+hh]=WattHour[A,:,hh]
+                WattHH[A,:,48*dd+hh]=WattHour[A,:,hh]
 
             #If DAILY AVERAGE IS SELECTED>>> (for when GUI is sorted out)   
             for p in range(19):
@@ -146,10 +146,10 @@ def mostcalcs(qfConfig, qfParams):
     # SubOA input file is kWh rather than Wh, so apply conversion
     if qfConfig.spatial_domain=='SubOA':
         TotArea=sum(Area)
-        WattArea*=(1000/365/24/TotArea)
+        WattHH*=(1000/365/24/TotArea)
         #np.around(WattHour, 3)
     # Return everything needed to build a shapefile of the output
-    return {'ID':Code, 'Data':WattArea, 'SpatialDomain':qfConfig.spatial_domain}
+    return {'ID':Code, 'Data':WattHH, 'SpatialDomain':qfConfig.spatial_domain}
 
 
 

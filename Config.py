@@ -15,7 +15,6 @@ import f90nml as nml
 #    Grid200Data: 200m x 200m grid - 40632 domains
 # SpatialDomain='LAData'  #spatial domain file name entered as string
 
-
 class Config:
     def __init__(self):
 
@@ -49,6 +48,7 @@ class Config:
         if self.dt_end < self.dt_start:
             raise ValueError('Start date %s after end date %s')
 
+    # Option 1 to populate config object: Load from a dictionary (so long as it has all the names needed) - used in QGIS
     def loadFromDictionary(self, configDict):
         self.checkInput(configDict)
         self.spatial_domain = configDict['spatial_domain']
@@ -58,6 +58,7 @@ class Config:
         self.wastewater_qf = configDict['wastewater_qf']
         self.input_data_dir = configDict['input_data_dir']
 
+    # Option 2: Load from namelist (used as standalone)
     def loadFromNamelist(self, configFile):
         # Load the properties from a namelist
         try:
