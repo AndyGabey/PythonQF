@@ -1,0 +1,13 @@
+#######,Net,Gross
+Natural Gas,35.5,39.4
+Petrol Fuel,44.7,47.1
+Diesel Fuel,43.3,45.5
+Crude Oil,43.4,45.7
+#######,Petrol Frac,Diesel Frac
+Motorcycles,1,0
+Taxi,0,1
+Car,0.84,0.16
+Bus,0,1
+LGV,0.1,0.9
+HGV-Rig,0,1
+HGV-Artic,0,1
