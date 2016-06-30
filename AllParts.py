@@ -30,7 +30,7 @@ def getQFComponents():
     components[18] = "Everything"
     return components
 
-def sum_fluxes(conf, params):
+def heat_fractions(conf, params):
     reader = csv.reader(open(conf.input_data_dir + "Index5_HeatCombustion.csv", "rt"),
                         delimiter=',')
     x = list(reader)[1:]

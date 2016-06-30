@@ -7,7 +7,7 @@ from collections import OrderedDict
 from TimeProfiles import WhatSeason, WhatYear, DayOfWeek, DateDiff, WeekSatSun, DailyFact, generateHolidays
 import read_data_files as rdf
 reload(rdf)
-from AllParts import sum_fluxes
+from AllParts import heat_fractions
 
 def get_area_data(qfConfig):
     # Load energy data from area-resolved file based on output area selected
@@ -45,7 +45,7 @@ def mostcalcs(qfConfig, qfParams):
     WattMonth = np.zeros((18, months))
 
     # Get total latent and/or sensible and/or wastewater heat fluxes for domestic & industrial
-    lsw = sum_fluxes(qfConfig, qfParams)
+    lsw = heat_fractions(qfConfig, qfParams)
     LSWfluxTotal = lsw['WholePart'] # Total
 
     NewElDom=np.zeros(len(Area))
